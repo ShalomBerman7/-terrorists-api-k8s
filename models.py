@@ -1,4 +1,5 @@
 from pydantic import BaseModel, Field
+from db import insert_mongodb
 
 
 def file_handling(df):
@@ -25,4 +26,8 @@ def validation(df):
         validated.append(person)
     response = {"count": len(validated), "top": [person.dict() for person in validated]
                 }
+    try:
+        insert_mongodb(response)
+    except:
+        raise 'Cant find the database.'
     return response

@@ -8,11 +8,8 @@ app = FastAPI()
 
 @app.post('/top-threats')
 def load_csv_file(file: UploadFile):
-    try:
-        df = pd.read_csv(file.file)
-        return file_handling(df)
-    except:
-        raise 'No file was inserted or the inserted file is not a csv.'
+    df = pd.read_csv(file.file)
+    return file_handling(df)
 
 
 if __name__ == '__main__':
