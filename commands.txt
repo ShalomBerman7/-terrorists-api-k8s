@@ -1,0 +1,2 @@
+docker build -t shalomberman/terrorist-api-k8s:v1 .
+docker push shalomberman/terrorist-api-k8s:v1

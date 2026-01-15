@@ -5,3 +5,4 @@ k8s/
 .gitignore
 README.md
 screenshots/
+docker-compose.yaml
