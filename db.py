@@ -1,16 +1,18 @@
 from pymongo import MongoClient
 
-try:
+
+def insert_mongodb(data):
     uri = "mongodb://localhost:27017/"
     client = MongoClient(uri)
+    try:
 
-    client.admin.command("ping")
-    print("Connected successfully")
+        db = client.get_database("MONGO_INITDB_DATABASE")
+        collection = db.get_collection("threat_db")
 
-    # other application code
+        result = collection.insert_many(data['top'])
+        print(len(result.inserted_ids))
 
-    client.close()
+        client.close()
 
-except Exception as e:
-    raise Exception(
-        "The following error occurred: ", e)
+    except Exception as e:
+        raise Exception("Unable to find the document due to the following error: ", e)
